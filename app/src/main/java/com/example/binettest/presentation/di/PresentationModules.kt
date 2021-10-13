@@ -20,39 +20,39 @@ val entryListViewModelModule: Module = module {
     viewModel { EntryListViewModel(get(), get()) }
 }
 
-val entryListUseCasesModule: Module = module {
-    factory { GetEntryListUseCase(get()) }
-
-    factory { SetViewEntryUseCase(get()) }
-}
-
-
 val coreViewModelModule: Module = module {
     viewModel { MainViewModel(get(), get(), get()) }
-}
-
-val coreUseCasesModule: Module = module {
-    factory { GetNewSessionValueUseCase(get()) }
-
-    factory { GetUserSessionIdUseCase(get()) }
-
-    factory { SetUserSessionUseCase(get()) }
 }
 
 val viewEntryViewModelModule: Module = module {
     viewModel { ViewEntryViewModel(get(), get()) }
 }
 
-val viewEntryUseCaseModule: Module = module {
-    factory { GetEntryDetailsUseCase(get()) }
-
-    factory { DeleteEntryUseCase(get()) }
-}
-
 val addEntryViewModelModule: Module = module {
     viewModel { AddEntryViewModel(get()) }
 }
 
+val entryListUseCasesModule: Module = module {
+    single { GetEntryListUseCase(get()) }
+
+    single { SetViewEntryUseCase(get()) }
+}
+
+val coreUseCasesModule: Module = module {
+    single { GetNewSessionValueUseCase(get()) }
+
+    single { GetUserSessionIdUseCase(get()) }
+
+    single { SetUserSessionUseCase(get()) }
+}
+
+
+val viewEntryUseCaseModule: Module = module {
+    single { GetEntryDetailsUseCase(get()) }
+
+    single { DeleteEntryUseCase(get()) }
+}
+
 val addEntryUseCaseModule: Module = module {
-    factory { AddEntryUseCase(get()) }
+    single { AddEntryUseCase(get()) }
 }

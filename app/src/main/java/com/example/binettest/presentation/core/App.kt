@@ -36,10 +36,11 @@ class App : Application() {
                     viewEntryRepositoryModule,
                     viewEntryRoomDaoModule,
 
-                    addEntryRepositoryModule,
+                    addEntryStorageModule,
                     addEntryApiModule,
                     addEntryViewModelModule,
                     addEntryUseCaseModule,
+                    addEntryRepositoryModule
                 )
             )
         }
