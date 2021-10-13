@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/wholeEntryFragment"
-        android:name="com.example.binettest.ui.WholeEntryFragment"
+        android:name="com.example.binettest.presentation.view_entry.ui.ViewEntryFragment"
         android:label="Запись"
-        tools:layout="@layout/whole_entry_fragment" />
+        tools:layout="@layout/fragment_view_entry" />
 </navigation>

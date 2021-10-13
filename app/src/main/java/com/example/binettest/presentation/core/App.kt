@@ -2,10 +2,7 @@ package com.example.binettest.presentation.core
 
 import android.app.Application
 import com.example.binettest.data.di.*
-import com.example.binettest.presentation.entry_list.di.coreUseCasesModule
-import com.example.binettest.presentation.entry_list.di.coreViewModelModule
-import com.example.binettest.presentation.entry_list.di.entryListUseCasesModule
-import com.example.binettest.presentation.entry_list.di.entryListViewModelModule
+import com.example.binettest.presentation.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -32,7 +29,12 @@ class App : Application() {
                     entryListDataApiModule,
                     entryListDataMapperModule,
                     entryListDataRepositoryModule,
-                    entryListStorageModule
+                    entryListStorageModule,
+
+                    viewEntryViewModelModule,
+                    viewEntryUseCaseModule,
+                    viewEntryRepositoryModule,
+                    viewEntryRoomDaoModule
                 )
             )
         }

@@ -8,7 +8,7 @@ import com.example.binettest.presentation.base.viewmodel.BaseViewModel
 import com.example.binettest.presentation.entry_list.action.EntryListAction
 import com.example.binettest.presentation.entry_list.viewstate.EntryListViewState
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -61,9 +61,7 @@ class EntryListViewModel(
             getObservableViewEntry(entry)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { _, throwable ->
-                    if (throwable != null) Log.e(TAG, "onError()", throwable)
-                }
+                .subscribe {}
         )
     }
 
@@ -73,9 +71,11 @@ class EntryListViewModel(
         }
     }
 
-    private fun getObservableViewEntry(entry: EntryListModel?): Single<Unit> {
-        return Single.defer {
-            Single.just(setViewEntry.execute(entry))
+    private fun getObservableViewEntry(entry: EntryListModel?): Completable {
+        return Completable.defer {
+            Completable.create {
+                setViewEntry.execute(entry)
+            }
         }
     }
 }

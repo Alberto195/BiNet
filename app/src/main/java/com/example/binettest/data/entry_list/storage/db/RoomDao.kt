@@ -7,11 +7,12 @@ import com.example.binettest.data.entry_list.storage.db.models.EntryDetailsDB
 @Dao
 interface RoomDao {
 
-    @Query("SELECT * FROM view_entry WHERE id = 0")
+    @Query("SELECT * FROM view_entry;")
     fun getEntry(): EntryDetailsDB
 
-    @Delete
-    fun deleteEntry(entry: EntryDetailsDB)
+    @Query("DELETE FROM view_entry;")
+    fun deleteEntry()
+
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertEntry(entry: EntryDetailsDB)

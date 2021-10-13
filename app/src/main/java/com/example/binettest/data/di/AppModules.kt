@@ -14,8 +14,12 @@ import com.example.binettest.data.entry_list.storage.UserStorageSharedPrefs
 import com.example.binettest.data.entry_list.storage.db.DatabaseRepositoryImpl
 import com.example.binettest.data.entry_list.storage.db.RoomDataBase
 import com.example.binettest.data.entry_list.storage.sharedprefs.SharedPrefUserStorage
+import com.example.binettest.data.view_entry.repositories.ViewEntryRepositoryImpl
+import com.example.binettest.data.view_entry.storage.UserStorageEntry
+import com.example.binettest.data.view_entry.storage.db.DatabaseEntry
 import com.example.binettest.domain.core.repositories.UserSessionRepository
 import com.example.binettest.domain.entry_list.repositories.EntryRepository
+import com.example.binettest.domain.view_entry.repositories.ViewEntryRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -136,4 +140,20 @@ val coreDataMapperModule: Module = module {
 
 val coreStorageModule: Module = module {
     single<UserStorageCore> { SharedPrefUserStorageCore(androidContext()) }
+}
+
+
+val viewEntryRepositoryModule: Module = module {
+    single<ViewEntryRepository> { ViewEntryRepositoryImpl(get()) }
+
+    single<UserStorageEntry> { DatabaseEntry(get()) }
+}
+
+val viewEntryRoomDaoModule: Module = module {
+
+    single<com.example.binettest.data.view_entry.storage.db.RoomDataBase>
+    { com.example.binettest.data.view_entry.storage.db.RoomDataBase.getInstance(androidContext()) }
+
+    single { com.example.binettest.data.view_entry.storage.db.RoomDataBase.getInstance(androidContext()).getRoomDao() }
+
 }

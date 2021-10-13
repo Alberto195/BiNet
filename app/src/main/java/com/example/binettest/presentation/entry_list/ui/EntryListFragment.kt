@@ -32,14 +32,14 @@ class EntryListFragment : BaseFragment<
     override fun getViewModelClass(): KClass<EntryListViewModel> = EntryListViewModel::class
 
     override fun getBinding(
-            inflater: LayoutInflater,
-            container: ViewGroup?
+        inflater: LayoutInflater,
+        container: ViewGroup?
     ): FragmentEntryListBinding =
-            FragmentEntryListBinding.inflate(
-                    inflater,
-                    container,
-                    false
-            )
+        FragmentEntryListBinding.inflate(
+            inflater,
+            container,
+            false
+        )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,9 +61,10 @@ class EntryListFragment : BaseFragment<
 
     private fun loadListFailed() {
         Toast.makeText(
-                requireContext(),
-                "Ошибка! Проверьте соединение",
-                Toast.LENGTH_LONG).show()
+            requireContext(),
+            "Ошибка! Проверьте соединение",
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     private fun showList() {
