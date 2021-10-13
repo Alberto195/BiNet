@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/addEntryFragment"
-        android:name="com.example.binettest.ui.AddEntryFragment"
+        android:name="com.example.binettest.presentation.add_entry.ui.AddEntryFragment"
         android:label="Добавит запись"
-        tools:layout="@layout/add_entry_fragment" />
+        tools:layout="@layout/fragment_add_entry" />
     <fragment
         android:id="@+id/entryListFragment"
         android:name="com.example.binettest.presentation.entry_list.ui.EntryListFragment"

@@ -1,12 +1,12 @@
-package com.example.binettest.data.entry_list.storage.sharedprefs
+package com.example.binettest.data.add_entry.storage.sharedprefs
 
 import android.content.Context
-import com.example.binettest.data.entry_list.storage.UserStorageSharedPrefs
-import com.example.binettest.data.entry_list.storage.models.UserSession
+import com.example.binettest.data.add_entry.storage.UserStorage
+import com.example.binettest.data.add_entry.storage.models.UserSession
 
-class SharedPrefUserStorage(
+class AddEntrySharedPrefUserStorage(
     context: Context
-) : UserStorageSharedPrefs {
+) : UserStorage {
 
     private val preferences = context.getSharedPreferences(NAME_PREF, Context.MODE_PRIVATE)
 

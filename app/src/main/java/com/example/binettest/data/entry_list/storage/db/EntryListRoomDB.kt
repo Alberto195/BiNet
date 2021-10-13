@@ -7,28 +7,28 @@ import androidx.room.RoomDatabase
 import com.example.binettest.data.entry_list.storage.db.models.EntryDetailsDB
 
 @Database(entities = [EntryDetailsDB::class], version = 1, exportSchema = false)
-abstract class RoomDataBase : RoomDatabase() {
+abstract class EntryListRoomDB : RoomDatabase() {
 
     abstract fun getRoomDao(): RoomDao
 
     companion object {
 
         @Volatile
-        private var database: RoomDataBase? = null
+        private var database: EntryListRoomDB? = null
 
         @Synchronized
-        fun getInstance(context: Context): RoomDataBase {
+        fun getInstance(context: Context): EntryListRoomDB {
             return if (database == null) {
                 database = Room
                     .databaseBuilder(
                         context,
-                        RoomDataBase::class.java,
+                        EntryListRoomDB::class.java,
                         "database"
                     )
                     .fallbackToDestructiveMigration().build()
 
-                database as RoomDataBase
-            } else database as RoomDataBase
+                database as EntryListRoomDB
+            } else database as EntryListRoomDB
         }
     }
 }

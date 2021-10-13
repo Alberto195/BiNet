@@ -1,6 +1,10 @@
 package com.example.binettest.data.di
 
 import android.annotation.SuppressLint
+import com.example.binettest.data.add_entry.api_service.AddApi
+import com.example.binettest.data.add_entry.repositories.AddEntryRepositoryImpl
+import com.example.binettest.data.add_entry.storage.UserStorage
+import com.example.binettest.data.add_entry.storage.sharedprefs.AddEntrySharedPrefUserStorage
 import com.example.binettest.data.core.api_service.SessionApi
 import com.example.binettest.data.core.mappers.UserSessionMapper
 import com.example.binettest.data.core.repositories.UserSessionRepositoryImpl
@@ -12,11 +16,13 @@ import com.example.binettest.data.entry_list.repositories.EntryRepositoryImpl
 import com.example.binettest.data.entry_list.storage.UserStorageDB
 import com.example.binettest.data.entry_list.storage.UserStorageSharedPrefs
 import com.example.binettest.data.entry_list.storage.db.DatabaseRepositoryImpl
-import com.example.binettest.data.entry_list.storage.db.RoomDataBase
+import com.example.binettest.data.entry_list.storage.db.EntryListRoomDB
 import com.example.binettest.data.entry_list.storage.sharedprefs.SharedPrefUserStorage
 import com.example.binettest.data.view_entry.repositories.ViewEntryRepositoryImpl
 import com.example.binettest.data.view_entry.storage.UserStorageEntry
 import com.example.binettest.data.view_entry.storage.db.DatabaseEntry
+import com.example.binettest.data.view_entry.storage.db.ViewEntryRoomDB
+import com.example.binettest.domain.add_entry.repositories.AddEntryRepository
 import com.example.binettest.domain.core.repositories.UserSessionRepository
 import com.example.binettest.domain.entry_list.repositories.EntryRepository
 import com.example.binettest.domain.view_entry.repositories.ViewEntryRepository
@@ -114,9 +120,9 @@ fun provideOkHttpClient(): OkHttpClient {
 val entryListDataRepositoryModule: Module = module {
     single<EntryRepository> { EntryRepositoryImpl(get(), get(), get(), get()) }
 
-    single<RoomDataBase> { RoomDataBase.getInstance(androidContext()) }
+    single<EntryListRoomDB> { EntryListRoomDB.getInstance(androidContext()) }
 
-    single { RoomDataBase.getInstance(androidContext()).getRoomDao() }
+    single { EntryListRoomDB.getInstance(androidContext()).getRoomDao() }
 
     single<UserStorageDB> { DatabaseRepositoryImpl(get()) }
 }
@@ -151,9 +157,19 @@ val viewEntryRepositoryModule: Module = module {
 
 val viewEntryRoomDaoModule: Module = module {
 
-    single<com.example.binettest.data.view_entry.storage.db.RoomDataBase>
-    { com.example.binettest.data.view_entry.storage.db.RoomDataBase.getInstance(androidContext()) }
+    single<ViewEntryRoomDB> { ViewEntryRoomDB.getInstance(androidContext()) }
 
-    single { com.example.binettest.data.view_entry.storage.db.RoomDataBase.getInstance(androidContext()).getRoomDao() }
-
+    single { ViewEntryRoomDB.getInstance(androidContext()).getRoomDao() }
 }
+
+val addEntryRepositoryModule: Module = module {
+    single<AddEntryRepository> { AddEntryRepositoryImpl(get(), get()) }
+
+    single<UserStorage> { AddEntrySharedPrefUserStorage(androidContext()) }
+}
+
+val addEntryApiModule: Module = module {
+    factory { provideAddEntryApi(get()) }
+}
+
+fun provideAddEntryApi(retrofit: Retrofit): AddApi = retrofit.create(AddApi::class.java)
