@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/entryListFragment">
+
+    <fragment
+        android:id="@+id/addEntryFragment"
+        android:name="com.example.binettest.ui.AddEntryFragment"
+        android:label="Добавит запись"
+        tools:layout="@layout/add_entry_fragment" />
+    <fragment
+        android:id="@+id/entryListFragment"
+        android:name="com.example.binettest.presentation.entry_list.ui.EntryListFragment"
+        android:label="Список записей"
+        tools:layout="@layout/fragment_entry_list" >
+        <action
+            android:id="@+id/action_entryListFragment_to_wholeEntryFragment"
+            app:destination="@id/wholeEntryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wholeEntryFragment"
+        android:name="com.example.binettest.ui.WholeEntryFragment"
+        android:label="Запись"
+        tools:layout="@layout/whole_entry_fragment" />
+</navigation>

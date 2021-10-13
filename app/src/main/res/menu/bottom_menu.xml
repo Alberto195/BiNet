@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/addEntryFragment"
+        android:title="@string/add_fragment"
+        android:icon="@drawable/outline_note_add_black_24dp"/>
+
+    <item android:id="@+id/entryListFragment"
+        android:title="@string/list_fragment"
+        android:icon="@drawable/outline_list_black_24dp"/>
+
+</menu>
