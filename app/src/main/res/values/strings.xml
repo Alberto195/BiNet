@@ -8,4 +8,5 @@
     <string name="content">Содержание:</string>
     <string name="add_fragment">Добавить</string>
     <string name="list_fragment">Список</string>
+    <string name="hint">Напишите тут заметку</string>
 </resources>
