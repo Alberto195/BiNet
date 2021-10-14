@@ -61,7 +61,7 @@ class EntryListViewModel(
             getObservableViewEntry(entry)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {}
+                .subscribe()
         )
     }
 
